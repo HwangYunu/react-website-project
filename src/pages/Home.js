@@ -1,9 +1,7 @@
-import React from 'react'
-
 function Home() {
   return (
     <div>
-      <p>안녕하세요!</p>
+      <h1>안녕하세요!</h1>
       <p>메인 페이지 입니다!!</p>
     </div>
   )

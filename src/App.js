@@ -1,30 +1,30 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { db } from './firebase.js'
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+// import { db } from './firebase.js'
+// import { useEffect } from 'react'
+// import { useSelector } from 'react-redux'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import Home from './pages/Home'
 import Post from './pages/Post'
 
 function App() {
-  useEffect(() => {
-    db.collection('todo')
-      .get()
-      .then(result => {
-        result.forEach(doc => {
-          console.log(doc.data())
-        })
-      })
-  })
+  // useEffect(() => {
+  //   db.collection('todo')
+  //     .get()
+  //     .then(result => {
+  //       result.forEach(doc => {
+  //         console.log(doc.data())
+  //       })
+  //     })
+  // })
 
-  let reduxTest = useSelector(state => {
-    return state
-    // return state.testNumbers
-  })
-  console.log(reduxTest)
-  console.log(reduxTest.testNumbers)
+  // let reduxTest = useSelector(state => {
+  //   return state
+  //   // return state.testNumbers
+  // })
+  // console.log(reduxTest)
+  // console.log(reduxTest.testNumbers)
 
   let navigate = useNavigate()
 
