@@ -3,7 +3,7 @@ body {
   font-family: 'NanumSquare', sans-serif;
   /* Bootstrap의 폰트를 덮어쓰기 */
   --bs-body-font-family: NanumSquare;
-  padding-top: 70px;
+  padding-top: 85px;
 }
 
 .App {

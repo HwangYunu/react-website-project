@@ -1,12 +1,15 @@
-import { Container, Card, Col, Row } from 'react-bootstrap'
+import { Container, Card, Col, Row, Button } from 'react-bootstrap'
 import { db } from '../firebase.js'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Post() {
+  let navigate = useNavigate()
   let [postData, setPostData] = useState([])
 
   useEffect(() => {
     db.collection('post')
+      .orderBy('date', 'desc')
       .get()
       .then(result => {
         let temp = []
@@ -23,6 +26,23 @@ function Post() {
 
   return (
     <Container>
+      <Row>
+        <Col sm={4}></Col>
+        <Col sm={4}>
+          <h1>POST</h1>
+        </Col>
+        <Col sm={4}>
+          <Button
+            onClick={() => {
+              navigate('/postWrite')
+            }}
+            variant="danger"
+            style={{ float: 'right' }}>
+            글쓰기
+          </Button>
+        </Col>
+      </Row>
+      <hr />
       <Row
         xs={1}
         md={2}
@@ -36,8 +56,9 @@ function Post() {
                   src="favicon.ico"
                   style={{ width: '100px', float: 'left' }}
                 />
-                <Card.Title>{data.제목}</Card.Title>
-                <Card.Text>{data.내용}</Card.Text>
+                <Card.Title>{data.title}</Card.Title>
+                <Card.Text>{data.content}</Card.Text>
+                <Card.Subtitle>{data.date}</Card.Subtitle>
               </Card.Body>
             </Card>
           </Col>

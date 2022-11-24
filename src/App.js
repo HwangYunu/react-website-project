@@ -7,6 +7,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import Home from './pages/Home'
 import Post from './pages/Post'
+import PostWrite from './pages/PostWrite'
 
 function App() {
   // useEffect(() => {
@@ -71,6 +72,9 @@ function App() {
         <Route
           path="/post"
           element={<Post />}></Route>
+        <Route
+          path="/postWrite"
+          element={<PostWrite />}></Route>
         <Route
           path="/temp"
           element={<div>임시 페이지 입니다.</div>}></Route>
