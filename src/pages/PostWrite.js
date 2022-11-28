@@ -20,6 +20,8 @@ function PostWrite() {
     console.log('******** 글쓰기 작성내용 ********')
     console.log(inputValue)
 
+    const docId = db.collection('post').doc().id
+
     // 게시물 갯수 구하기
     db.collection('postCounter')
       .doc('postCounter')
@@ -27,8 +29,10 @@ function PostWrite() {
       .then(resultForCounter => {
         // 게시물 작성
         db.collection('post')
-          .add({
+          .doc(docId)
+          .set({
             ...inputValue,
+            docId: docId,
             id: resultForCounter.data().posts + 1,
             date: new Date().toLocaleString(),
           })
