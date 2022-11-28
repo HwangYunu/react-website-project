@@ -7,6 +7,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import Home from './pages/Home'
 import Post from './pages/Post'
+import PostDetail from './pages/PostDetail'
 import PostWrite from './pages/PostWrite'
 
 function App() {
@@ -72,6 +73,9 @@ function App() {
         <Route
           path="/post"
           element={<Post />}></Route>
+        <Route
+          path="/postDetail"
+          element={<PostDetail />}></Route>
         <Route
           path="/postWrite"
           element={<PostWrite />}></Route>

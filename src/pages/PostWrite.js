@@ -1,5 +1,5 @@
 import { Container, Col, Row, Form, Button } from 'react-bootstrap'
-import { db } from '../firebase.js'
+import { db, fieldValue } from '../firebase.js'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -11,7 +11,6 @@ function PostWrite() {
     const temp = {
       ...inputValue,
       [e.target.name]: e.target.value,
-      date: new Date().toLocaleString(),
     }
     setInputValue(temp)
     // ...inputValue : 지금 업데이트 하는 state 외의 기존 state 값들
@@ -20,20 +19,38 @@ function PostWrite() {
   const uploadPost = () => {
     console.log('******** 글쓰기 작성내용 ********')
     console.log(inputValue)
-    db.collection('post')
-      .add(inputValue)
-      .then(result => {
-        console.log('********* 글 작성 성공! *********')
-        console.log(result)
-        console.log('********************************')
-        alert('글 작성에 성공하였습니다!')
-        navigate('/post')
-      })
-      .catch(err => {
-        console.log('******* 글 작성 에러 발생 *******')
-        console.log(err)
-        console.log('********************************')
-        alert('글 작성 도중 에러가 발생하였습니다!')
+
+    // 게시물 갯수 구하기
+    db.collection('postCounter')
+      .doc('postCounter')
+      .get()
+      .then(resultForCounter => {
+        // 게시물 작성
+        db.collection('post')
+          .add({
+            ...inputValue,
+            id: resultForCounter.data().posts + 1,
+            date: new Date().toLocaleString(),
+          })
+          .then(result => {
+            console.log('********* 글 작성 성공! *********')
+            console.log(result)
+            console.log('********************************')
+
+            // 게시물 번호 업데이트
+            db.collection('postCounter')
+              .doc('postCounter')
+              .update({ posts: fieldValue.increment(1) })
+
+            // post페이지로 이동
+            navigate('/post')
+          })
+          .catch(err => {
+            console.log('******* 글 작성 에러 발생 *******')
+            console.log(err)
+            console.log('********************************')
+            alert('글 작성 도중 에러가 발생하였습니다!')
+          })
       })
   }
 

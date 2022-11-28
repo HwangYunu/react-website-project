@@ -9,7 +9,7 @@ function Post() {
 
   useEffect(() => {
     db.collection('post')
-      .orderBy('date', 'desc')
+      .orderBy('id', 'desc')
       .get()
       .then(result => {
         let temp = []
@@ -56,7 +56,13 @@ function Post() {
                   src="favicon.ico"
                   style={{ width: '100px', float: 'left' }}
                 />
-                <Card.Title>{data.title}</Card.Title>
+                <Card.Subtitle>글번호 : {data.id}</Card.Subtitle>
+                <Card.Title
+                  onClick={() => {
+                    navigate('/postDetail')
+                  }}>
+                  {data.title}
+                </Card.Title>
                 <Card.Text>{data.content}</Card.Text>
                 <Card.Subtitle>{data.date}</Card.Subtitle>
               </Card.Body>

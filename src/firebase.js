@@ -14,4 +14,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 
-export { db }
+// PostWrite의 게시물 번호 업데이트를 위함
+const fieldValue = firebase.firestore.FieldValue
+
+export { db, fieldValue }
