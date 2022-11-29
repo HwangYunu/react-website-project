@@ -1,6 +1,6 @@
 import { Container, Card, Col, Row, Button } from 'react-bootstrap'
 import { db } from '../firebase.js'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function Post() {
@@ -59,7 +59,7 @@ function Post() {
                 <Card.Subtitle>글번호 : {data.id}</Card.Subtitle>
                 <Card.Title
                   onClick={() => {
-                    navigate('/postDetail')
+                    navigate(`/postDetail/${data.id}`)
                   }}>
                   {data.title}
                 </Card.Title>

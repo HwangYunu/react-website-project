@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Post from './pages/Post'
 import PostDetail from './pages/PostDetail'
 import PostWrite from './pages/PostWrite'
+import PostEdit from './pages/PostEdit'
 
 function App() {
   // useEffect(() => {
@@ -74,8 +75,11 @@ function App() {
           path="/post"
           element={<Post />}></Route>
         <Route
-          path="/postDetail"
+          path="/postDetail/:id"
           element={<PostDetail />}></Route>
+        <Route
+          path="/postEdit/:id"
+          element={<PostEdit />}></Route>
         <Route
           path="/postWrite"
           element={<PostWrite />}></Route>

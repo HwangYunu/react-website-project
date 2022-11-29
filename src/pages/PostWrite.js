@@ -20,6 +20,7 @@ function PostWrite() {
     console.log('******** 글쓰기 작성내용 ********')
     console.log(inputValue)
 
+    // Document ID
     const docId = db.collection('post').doc().id
 
     // 게시물 갯수 구하기
