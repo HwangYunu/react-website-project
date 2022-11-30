@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { Modal, Form, Button } from 'react-bootstrap'
 import { auth, db } from '../firebase.js'
+import { useNavigate } from 'react-router-dom'
 
 function SignUpModal(props) {
+  let navigate = useNavigate()
   const [inputValue, setInputValue] = useState({})
 
   const inputValueObject = e => {
@@ -11,7 +13,6 @@ function SignUpModal(props) {
       [e.target.name]: e.target.value,
     }
     setInputValue(temp)
-    // ...inputValue : 지금 업데이트 하는 state 외의 기존 state 값들
   }
 
   const signUp = () => {
@@ -29,8 +30,12 @@ function SignUpModal(props) {
           .then(() => {})
           .catch(() => {})
 
-        alert('회원가입이 완료되었습니다!')
-        props.onHide(false)
+        setTimeout(() => {
+          alert('회원가입이 완료되었습니다!')
+          props.onHide(false)
+          localStorage.removeItem('유저')
+          window.location.reload()
+        }, 1000)
       })
       .catch(err => {
         console.log(err)
