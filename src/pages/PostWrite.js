@@ -17,10 +17,7 @@ function PostWrite() {
   }
 
   const uploadPost = () => {
-    console.log('******** 글쓰기 작성내용 ********')
-    console.log(inputValue)
-
-    // Document ID
+    // 새로 추가될 게시물의 Document ID
     const docId = db.collection('post').doc().id
 
     // 게시물 갯수 구하기
@@ -37,11 +34,7 @@ function PostWrite() {
             id: resultForCounter.data().posts + 1,
             date: new Date().toLocaleString(),
           })
-          .then(result => {
-            console.log('********* 글 작성 성공! *********')
-            console.log(result)
-            console.log('********************************')
-
+          .then(() => {
             // 게시물 번호 업데이트
             db.collection('postCounter')
               .doc('postCounter')
@@ -53,7 +46,6 @@ function PostWrite() {
           .catch(err => {
             console.log('******* 글 작성 에러 발생 *******')
             console.log(err)
-            console.log('********************************')
             alert('글 작성 도중 에러가 발생하였습니다!')
           })
       })

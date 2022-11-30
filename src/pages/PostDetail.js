@@ -1,4 +1,4 @@
-import { Container, Col, Row, Form, Button } from 'react-bootstrap'
+import { Container, Col, Row, Form, Button, ButtonGroup } from 'react-bootstrap'
 import { db } from '../firebase'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -64,20 +64,20 @@ function PostDetail() {
           <h1>POST</h1>
         </Col>
         <Col sm={4}>
-          <Button
-            onClick={deletePost}
-            variant="secondary">
-            삭제하기
-          </Button>
-
-          <Button
-            onClick={() => {
-              navigate(`/postEdit/${id}`)
-            }}
-            variant="danger"
-            style={{ float: 'right' }}>
-            수정하기
-          </Button>
+          <ButtonGroup style={{ float: 'right' }}>
+            <Button
+              onClick={deletePost}
+              variant="secondary">
+              삭제하기
+            </Button>
+            <Button
+              onClick={() => {
+                navigate(`/postEdit/${id}`)
+              }}
+              variant="danger">
+              수정하기
+            </Button>
+          </ButtonGroup>
         </Col>
       </Row>
       <hr />
