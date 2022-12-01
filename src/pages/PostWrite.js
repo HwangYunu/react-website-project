@@ -31,6 +31,8 @@ function PostWrite() {
           .set({
             ...inputValue,
             docId: docId,
+            name: JSON.parse(localStorage.getItem('유저')).name,
+            uid: JSON.parse(localStorage.getItem('유저')).uid,
             id: resultForCounter.data().posts + 1,
             date: new Date().toLocaleString(),
           })

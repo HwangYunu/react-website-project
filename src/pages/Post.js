@@ -57,6 +57,7 @@ function Post() {
                   style={{ width: '100px', float: 'left' }}
                 />
                 <Card.Subtitle>글번호 : {data.id}</Card.Subtitle>
+                <Card.Subtitle>작성자 : {data.name}</Card.Subtitle>
                 <Card.Title
                   onClick={() => {
                     navigate(`/postDetail/${data.id}`)

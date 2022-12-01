@@ -38,7 +38,9 @@ function PostEdit() {
         result.forEach(data => (docId = data.id))
         // 해당하는 Document 업데이트
         db.collection('post').doc(docId).update(postData)
-        navigate('/post')
+        setTimeout(() => {
+          navigate('/post')
+        }, 1000)
       })
   }
 

@@ -25,28 +25,46 @@ function PostDetail() {
   console.log(postData)
 
   const deletePost = () => {
-    if (window.confirm('게시물을 삭제하시겠습니까?')) {
-      db.collection('post')
-        .where('id', '==', parseInt(id))
-        .get()
-        .then(result => {
-          // 게시물 id의 DocumentID 찾기
-          let docId
-          result.forEach(data => (docId = data.id))
-          // 해당하는 Documnet 삭제
-          db.collection('post')
-            .doc(docId)
-            .delete()
-            .then(() => {
-              console.log('문서 삭제 성공!')
-              alert('글 삭제에 성공했습니다!')
-              navigate('/post')
-            })
-            .catch(err => {
-              console.log('에러 발생')
-              console.log(err)
-            })
-        })
+    let currentUser = JSON.parse(localStorage.getItem('유저')).uid
+    let postUser = postData.uid
+
+    if (currentUser === postUser) {
+      if (window.confirm('게시물을 삭제하시겠습니까?')) {
+        db.collection('post')
+          .where('id', '==', parseInt(id))
+          .get()
+          .then(result => {
+            // 게시물 id의 DocumentID 찾기
+            let docId
+            result.forEach(data => (docId = data.id))
+            // 해당하는 Documnet 삭제
+            db.collection('post')
+              .doc(docId)
+              .delete()
+              .then(() => {
+                console.log('문서 삭제 성공!')
+                alert('글 삭제에 성공했습니다!')
+                navigate('/post')
+              })
+              .catch(err => {
+                console.log('에러 발생')
+                console.log(err)
+              })
+          })
+      }
+    } else {
+      alert('해당 게시물은 삭제할 수 없습니다!')
+    }
+  }
+
+  const editPost = () => {
+    let currentUser = JSON.parse(localStorage.getItem('유저')).uid
+    let postUser = postData.uid
+
+    if (currentUser === postUser) {
+      navigate(`/postEdit/${id}`)
+    } else {
+      alert('해당 게시물은 수정할 수 없습니다!')
     }
   }
 
@@ -71,9 +89,7 @@ function PostDetail() {
               삭제하기
             </Button>
             <Button
-              onClick={() => {
-                navigate(`/postEdit/${id}`)
-              }}
+              onClick={editPost}
               variant="danger">
               수정하기
             </Button>
