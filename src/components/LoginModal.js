@@ -14,13 +14,14 @@ function LoginModal(props) {
   }
 
   // 로그인 상태 감지
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      console.log('** 로그인정보 **')
-      console.log(user)
-      console.log(user.uid)
-      console.log(user.displayName)
-      console.log('** 로그인정보 **')
+  auth.onAuthStateChanged(userResult => {
+    if (userResult) {
+      // console.log('** 로그인정보 **')
+      // console.log(user)
+      // console.log(user.uid)
+      // console.log(user.displayName)
+      // console.log('** 로그인정보 **')
+      let user = { uid: userResult.uid, name: userResult.displayName }
       localStorage.setItem('유저', JSON.stringify(user))
     } else {
       console.log('로그인 정보가 없습니다.')
@@ -33,7 +34,6 @@ function LoginModal(props) {
       .then(userResult => {
         alert('로그인에 성공하였습니다!')
         props.onHide(false)
-        props.setUserLoginStatus(true)
       })
       .catch(err => {
         console.log(err)

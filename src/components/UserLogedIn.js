@@ -12,7 +12,7 @@ function UserLogedIn() {
 
   return (
     <div>
-      {JSON.parse(localStorage.getItem('유저')).displayName}님 안녕하세요!
+      {JSON.parse(localStorage.getItem('유저')).name}님 안녕하세요!
       <Button
         onClick={logout}
         className="mx-3">

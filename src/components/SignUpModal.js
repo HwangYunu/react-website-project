@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import { Modal, Form, Button } from 'react-bootstrap'
 import { auth, db } from '../firebase.js'
-import { useNavigate } from 'react-router-dom'
 
 function SignUpModal(props) {
-  let navigate = useNavigate()
   const [inputValue, setInputValue] = useState({})
 
   const inputValueObject = e => {
